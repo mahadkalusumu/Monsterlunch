@@ -1,0 +1,80 @@
+var today = new Date();
+var dd = String(today.getDate()).padStart(2, "0");
+var mm = String(today.getMonth() + 1).padStart(2, "0"); //January is 0!
+var yyyy = today.getFullYear();
+
+today = yyyy + "-" + mm + "-" + dd;
+
+let imageBySizeHappy = [];
+let imageBySizeSad = [];
+
+//if (onClick == "yes") {
+
+document.getElementById("yes").onclick = function() {
+  let imageElement = document.querySelector("img");
+  imageElement.style.backgroundColor = "red";
+  let size = window.localStorage.getItem("size"); //is this where we get default value
+  let dates = window.localStorage.getItem("dates");
+
+  let newSizeHappy = parseInt(size) + 1;
+  window.localStorage.setItem("size", newSizeHappy);
+  imageElement.src = imageBySizeHappy[newSizeHappy];
+
+  //sizeCheck(newSizeHappy); Do we need this in our final code?
+
+  window.localStorage.setItem("dates", Date.now());
+};
+
+//}
+
+// else {
+document.getElementById("no").onclick = function() {
+  let imageElement = document.querySelector("img");
+  imageElement.style.backgroundColor = "blue";
+  let size = window.localStorage.getItem("size");
+  let dates = window.localStorage.getItem("dates");
+
+  let newSizeSad = parseInt(size) - 1;
+  window.localStorage.setItem("size", newSizeSad);
+  imageElement.src = imageBySizeSad[newSizeSad];
+
+  sizeCheck(newSizeSad); //Do we need this in our final code?
+
+  window.localStorage.setItem("dates", Date.now());
+
+  function sizeCheck(size) {
+    if (size >= imageBySizeSad.length) {
+      console.log("Hurra hurra hurra");
+    }
+  }
+}
+//}
+
+function handleClick(yesOrNo) {
+  let imageElement = document.querySelector("img");
+  //imageElement.style.backgroundColor = "blue";
+  let size = window.localStorage.getItem("size");
+  let dates = window.localStorage.getItem("dates");
+  
+  let newSize;
+  if(yesOrNo === 'yes') {
+    newSize = 1
+  } else {
+    newSize = -1
+  }
+}
+
+function initialize() {
+  let size = window.localStorage.getItem("size"); //yes and no button? Can we put the "yes" and "no" "functions" inside of this function? Since they both have this variable inside them
+
+  if (size === null) {
+    window.localStorage.setItem("size", );
+    window.localStorage.setItem("dates", []);
+  }
+
+  if (size == imageBySizeSad.length) {
+    console.log("HURRA!!");
+  }
+}
+
+initialize();

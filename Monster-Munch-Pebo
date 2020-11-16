@@ -1,0 +1,84 @@
+var today = new Date();
+var dd = String(today.getDate()).padStart(2, "0");
+var mm = String(today.getMonth() + 1).padStart(2, "0"); //January is 0!
+var yyyy = today.getFullYear();
+
+today = yyyy + "-" + mm + "-" + dd;
+
+function initialize() {
+  let size = window.localStorage.getItem("size");
+
+  if (size === null) {
+    window.localStorage.setItem("size", 0);
+    window.localStorage.setItem("dates", []);
+  }
+}
+
+let happymonster = [ "https://cdn.glitch.com/85449d58-0626-4a7c-b722-78f488f0484d%2FbetaMonster.png?v=1604419928227",
+  "https://cdn.glitch.com/85449d58-0626-4a7c-b722-78f488f0484d%2F02afb857-a2f0-456b-97a5-8092b8df917f.image.png?v=1604503419067",
+  "https://cdn.glitch.com/85449d58-0626-4a7c-b722-78f488f0484d%2F73b8d91a-d802-4758-8014-7beb941fae1e.image.png?v=1604668896945",
+  "https://cdn.glitch.com/85449d58-0626-4a7c-b722-78f488f0484d%2F71cfec0f-3d40-4dc9-aa31-ac77f5d79fba.image.png?v=1604668603560"
+];
+
+//let newHappymonster = happymonster.map(function (num){
+//return num + 1;
+//console.logg(newHappymonster);
+//});
+
+let sadmonster = [
+  "https://cdn.glitch.com/85449d58-0626-4a7c-b722-78f488f0484d%2Fe26ebc59-a3cd-4fbc-8091-6171cb1b325a.image.png?v=1604668752611",
+  "https://cdn.glitch.com/85449d58-0626-4a7c-b722-78f488f0484d%2Fdd3c597f-2465-4493-9a73-c1a945afa6bb.image.png?v=1604675944948",
+  "https://cdn.glitch.com/85449d58-0626-4a7c-b722-78f488f0484d%2F95ed2d25-9ac1-4206-9264-d4e907831e7f.image.png?v=1604675984932"
+];
+
+var i = 0;
+for (i = 0; i < happymonster.length; i++) { //for (begin; condition; step){
+ console.log(happymonster[i]); //... loop body ..
+}
+
+let yesBtn = document.getElementById("yes");
+yesBtn.addEventListener("click", handleClick);
+
+let noBtn = document.getElementById("no");
+noBtn.addEventListener("click", handleClick);
+// innan pebo 
+function hideButtons(dates) {
+  if (dates === today) {
+    yesBtn.style.display = "none";
+    noBtn.style.display = "none";
+  } else {
+    yesBtn.style.display = "inline-block";
+    noBtn.style.display = "inline-block";
+  }
+}
+
+function handleClick(yesOrNo) {
+  let imageElement = document.querySelector(".monster");
+  let size = window.localStorage.getItem("size");
+  let dates = window.localStorage.getItem("dates");
+
+  window.localStorage.setItem("dates", today);
+
+  hideButtons(dates);
+
+  if (event.target == yesBtn) {
+    // Make monster happy
+    imageElement.src = happymonster[parseInt(size) - 1];
+    let newSizeHappy = parseInt(size) + 1;
+    window.localStorage.setItem("size", newSizeHappy);
+  } else if (event.target == noBtn) {
+    //Make monster sad
+    imageElement.src = sadmonster[parseInt(size) - 1];
+    let newSizeSad = parseInt(size) - 1;
+    window.localStorage.setItem("size", newSizeSad);
+  }
+  let newSize;
+}
+
+//document.queryselector(yesOrno).addeventlistener("click",)(event.target)
+// console.log()
+initialize();
+
+//handleClick(); AKTIVERA DEN HÄR NÄR NI ÄR KLARA SÅ ATT HEMSIDAN UPPDATERAR AUTOMATISKT
+
+//loop through array
