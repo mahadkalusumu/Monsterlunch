@@ -1,0 +1,104 @@
+
+
+body{
+    background: #DDD8B8;
+    text-align: center;
+    min-height: 100%;
+    overflow-y:hidden;  /*scroller*/
+    overflow-x: hidden;
+
+}
+
+
+.fontStyle{
+    font-family: ShlopWeb;
+    font-size: 50px;
+}
+#heading{
+    margin: 10px;
+}
+#question{
+    margin: 10px;
+
+}
+
+.button1 {
+    font-family: Shlop;
+    background-color: #6A66A3;
+    color: black;
+    font-size: 35px;
+    padding: 6px 28px;
+    border: none;
+    border-radius: 12px;
+    text-align: center;
+    transition-duration: 0.3s;
+    width: 20%;
+    margin-top: 10px;
+}
+.button1:hover {
+    background-color: black;
+    color: #6A66A3;
+}
+
+.button1:active {
+    background-color: #3e8e41;
+    box-shadow: 0 5px #666;
+    transform: translateY(4px);
+}
+
+.button2 {
+    font-family: Shlop;
+    background-color: #6A66A3;
+    color: black;
+    font-size: 35px;
+    padding: 6px 28px;
+    border: none;
+    border-radius: 12px;
+    text-align: center;
+    transition-duration: 0.3s;
+    width: 20%;
+    margin-top: 10px;
+}
+.button2:hover {
+    background-color: black;
+    color: #6A66A3;
+}
+.button2:active {
+    background-color: #3e8e41;
+    box-shadow: 0 5px #666;
+    transform: translateY(4px);
+}
+
+.wrapper{
+    with: 100%;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.monster{
+    
+    display: absolute;
+    margin-left: auto;
+    margin-right: auto;
+    width: 65%;
+    
+   
+
+}
+.name {
+    font-family: Shlop;
+    font-size: 50px;
+    margin-top: auto;
+    color: #84A9C0;
+    border-radius: 2px;
+
+}
+
+
+/*https://www.youtube.com/watch?v=PH35-BDak0M*/
+
+/* KEYFRAMES*/
+
+@keyframes drive {
+    from { trans}
+}

@@ -1,0 +1,128 @@
+var today = new Date();
+var dd = String(today.getDate()).padStart(2, "0");
+var mm = String(today.getMonth() + 1).padStart(2, "0"); //January is 0!
+var yyyy = today.getFullYear();
+
+today = yyyy + "-" + mm + "-" + dd;
+
+
+let imageBySize = [ "https://cdn.glitch.com/85449d58-0626-4a7c-b722-78f488f0484d%2F02afb857-a2f0-456b-97a5-8092b8df917f.image.png?v=1604503419067"
+]; //here will our animations be located and we will edit the order in html and css??
+  //"https://cdn.glitch.com/85449d58-0626-4a7c-b722-78f488f0484d%2FbetaMonster.png?v=1604419928227",
+  //)"https://cdn.glitch.com/85449d58-0626-4a7c-b722-78f488f0484d%2F02afb857-a2f0-456b-97a5-8092b8df917f.image.png?v=1604503419067",
+  //"https://cdn.glitch.com/85449d58-0626-4a7c-b722-78f488f0484d%2FbetaMonster.png?v=1604419928227",
+  //"/images/cool-monster.png"
+
+// Store 
+function initialize(number) { //why do we have this function?
+
+  let size = window.localStorage.getItem("size");
+
+  if (size === null) { //does this mean that if that is true we want to store a value of size which in this example is 0
+    window.localStorage.setItem("size", 0);
+    window.localStorage.setItem("dates", []); //is the value of "dates" an empty array, is this beacuse we dont want to get dates if size===null?
+  }
+
+
+  if (size == imageBySize.length) {
+    console.log("HURRA!!");
+  }
+}
+
+
+
+
+  document.getElementById("yes").onclick = function() {
+  let imageElement = document.querySelector("img");
+  imageElement.style.backgroundColor = "red";
+  let size = window.localStorage.getItem("size");//Daniel har skrivit parseInt()Våra bilder, vi ger bilderna ett värde av nummer 
+  let dates = window.localStorage.getItem("dates"); 
+    console.log("yes")
+  
+  // if there is no size stored in localstorage this will fail and set size to NaN (Not a Number)
+  // You need to check if "size" equals NaN, and if it does set size to 1 else set size to size + 1
+  // hint: use an if else statement
+  let newSize = parseInt(size) + 1; //is this that you add the size? 
+  window.localStorage.setItem("size", newSize); //here we store name("size") and value(newSize)
+  imageElement.src = imageBySize[newSize]; //is it here we will have our different pictures (sizes of our monsters)
+
+  // Check size!!
+  sizeCheck(newSize); //?? How big the monster is?? Where will this be displayed? 
+  
+  let newDates = parseInt(dates) + 1; 
+  window.localStorage.setItem("dates", newDates);
+
+  // you should do the same thing with dates but add a new "today" to the already saved dates
+  // To store an array of data in localStorage you need to force it into a string using JSON.stringify, see below
+  // hint: you have to use JSON.parse to make it into an understandable array after getting it from localStorage,
+  // and checking that it exists, e.g. if(dates) { // parse it and do something } else { //save the first today like below}
+  // add item to array https://www.w3schools.com/jsref/jsref_push.asp
+
+  //window.localStorage.setItem("size", size + 1);
+  //window.localStorage.setItem("dates", Date.now()); //Que es?
+
+  // Save feeding date, on initialize compare last feeding date with todays date.
+  // https://www.w3resource.com/javascript-exercises/javascript-date-exercise-8.php
+};
+
+document.getElementById("no").onclick = function() {
+  document.querySelector("img").style.backgroundColor = "blue"; //do the same as we did with yes aka red where we have minus pics
+  
+  
+  let size = window.localStorage.getItem("size");//Daniel har skrivit parseInt()Våra bilder, vi ger bilderna ett värde av nummer 
+  let dates = window.localStorage.getItem("dates"); 
+   
+  let newSize = parseInt(size) - 1; //is this that you add the size? 
+  
+  window.localStorage.setItem("size", newSize); //here we store name("size") and value(newSize)
+  
+  imageElement.src = imageBySize[2]; //is it here we will have our different pictures (sizes of our monsters)
+
+  // Check size!!
+  sizeCheck(newSize); //?? How big the monster is?? Where will this be displayed? 
+  
+  let newDates = parseInt(dates) + 1; 
+  window.localStorage.setItem("dates", newDates);
+}; 
+
+function sizeCheck(size) {
+  if (size >= imageBySize.length) { //if size is bigger or equals the lenght (numbers of characters) of imageBySize "Hurra hurra hurra"
+    console.log("Längden på stringen är större eller lika med size"); //det som kommer ut om size >=
+  }
+}
+
+  // EXEMPEL
+  /*let daniel(vsriabel) = window.localStorage.getItem(detta hämtar info från local stdorage("daniel-exempel");
+  if (daniel) {
+    console.log(daniel);
+    let danielArray(variabel) = JSON.parse(daniel);
+    console.log(danielArray);
+  } else {
+    window.localStorage.setItem(lagras i local storage(
+      "daniel-exempel",
+      JSON.stringify(["hej", 1, "test", true])
+    );
+    console.log("daniel created");
+  }*/
+
+
+initialize();
+
+// Retrive
+// You never store an item called "yes" so this will only return "undefined", and in your html there is no element with the id "resultgrowing"
+// Retrive
+
+// Turning milliseconds into days, differensen mellan två datum (86400000*2 motsvarar två dagar)
+let nowSince1970 = Date.now() / (60 * 60 * 24 * 1000);
+let twoDaysFromNow = (Date.now() + 86400000 * 2) / (60 * 60 * 24 * 1000);
+console.log("Days since 1 jan 1970: " + nowSince1970);
+console.log("difference: " + (twoDaysFromNow - nowSince1970));
+
+//Differensen mellan två datum
+//var date_diff_indays = function(date1, date2) {
+//dt1 = new Date(date1);
+//dt2 = new Date(date2);
+//return Math.floor((Date.UTC(dt2.getFullYear(), dt2.getMonth(), dt2.getDate()) - Date.UTC(dt1.getFullYear(), dt1.getMonth(), dt1.getDate()) ) /(1000 * 60 * 60 * 24));
+//}
+//console.log(date_diff_indays('04/02/2014', '11/04/2014'));
+//console.log(date_diff_indays('12/02/2014', '11/04/2014'));
